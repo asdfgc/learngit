@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--指定日志的输出格式-->
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] -%l -%m%n"/>
+        </Console>>
+        <!--filename用于定义日志的数据路径-->
+        <!--filePattern用于定义日志的匹配方式-->
+        <RollingFile name="RollingFileInfo" filename="D://info.log" filePattern="D:/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+            <!--日志过滤策略-->
+            <Filters>
+                <!--用于指定日志信息的最低输出级别-->
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%P] -%l -%m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <root level="all">
+            <!--控制台输出-->
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+        </root>>
+    </Loggers>
+</Configuration>
